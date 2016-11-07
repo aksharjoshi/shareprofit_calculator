@@ -1,11 +1,15 @@
 #tes and access data sent by POST
 # using the request object from flask
 from flask import Flask, render_template, request
+#from flask_restful import reqparse
 import json
 
 # Initialize the Flask application
 app = Flask(__name__)
+app.config['BUNDLE_ERRORS'] = True
 
+cost = 0
+proceeds = 0
 
 # This route will show a form to submit some JSON data
 @app.route('/')
@@ -24,22 +28,46 @@ def index():
 @app.route('/request', methods=['POST'])
 def jsonreq():
     # Get the JSON data sent from the form
-    jsondata = request.form['jsondata']
+    
+    #jsondata = request.form['jsondata']
     
     ticker = request.form['ticker']
-    allotment = request.form['allotment']
-    finalPrice = request.form['finalPrice']
-    sellCommision = request.form['sellCommision']
-    initialPrice = request.form['buyCommision']
+    allotment = int(request.form['allotment'])
+    finalPrice = float(request.form['finalPrice'])
+    sellCommision = float(request.form['sellCommision'])
+    buyCommision = float(request.form['buyCommision'])
+    initialPrice = float(request.form['initialPrice'])
     taxRate = request.form['taxRate']
 
+    tax = float(taxRate.split("%")[-1])
+    
+    initialInvest = (allotment*initialPrice)
+    finalInvest = (allotment*finalPrice)
+    totalCommision = buyCommision + sellCommision
+
+    taxTotal = (tax/100) * ((finalInvest) - (initialInvest) - totalCommision)
+
+    netProfit = (finalInvest) - (initialInvest) - totalCommision - taxTotal
+    #calcProfit(allotment, finalPrice, initialPrice, totalCommision, taxTotal)
+
+    proceeds = allotment * finalPrice
+    
+    cost = (initialInvest) + totalCommision + taxTotal
+
+    roi = (netProfit / (initialInvest + taxTotal + totalCommision)) * 100
+    roiPerc = str(roi)+" "+"%"
     # Convert the JSON data into a Python structure
-    data = json.loads(jsondata)
-    return render_template('request.html', data=data, jsondata=jsondata, ticker=ticker)
+    #data = json.loads(jsondata)
+    return render_template('request.html', roiPerc=roiPerc, netProfit=netProfit, ticker=ticker,totalCommision=totalCommision,taxRate=taxRate,taxTotal=taxTotal,proceeds=proceeds,cost=cost)
 
 
-#def calcProfit():
-    pass
+def calcProfit(allotment, finalPrice, initialPrice, totalCommision, taxTotal):
+    proceeds = allotment * finalPrice
+    
+    cost = (allotment * initialPrice) + totalCommision + taxTotal
+#     #return render_template('request.html', proceeds=proceeds, cost=cost)
+
+
 if __name__ == '__main__':
     app.run(
         host="0.0.0.0",

@@ -5,7 +5,7 @@
           rel="stylesheet">
   </head>
   <body>
-    <div class="container">
+    <!-- <div class="container">
       <div class="header">
         <h3 class="text-muted">How To Manage JSON Requests</h3>
       </div>
@@ -17,10 +17,28 @@
       <ul>
       {% for item in data %}
         <li>{{item.id}}: {{item.type}}</li>
-        <li> {{ ticker }} </li>
+        
       {% endfor %}
     </ul>
+ -->
+ <div class="header">
+        <h3 class="text-muted">Share calculator:</h3>
+ </div>
 
+    <h3>Details:</h3><br/><pre>
+    <ul>
+      <li>totalCommision: {{totalCommision}}</li>
+      <li>ticker: {{ticker}}</li>
+      <li>cost: {{cost}}</li>
+      <li>proceeds: {{proceeds}}</li>
+      <li>taxRate: {{taxRate}}</li>
+      <li>taxTotal: {{taxTotal}}</li>
+      <li>proceeds: {{proceeds}}</li>
+      <li>cost: {{cost}}</li>
+      <li>netProfit: {{netProfit}}</li>
+      <li>roiPerc: {{roiPerc}}</li>
+    </ul>
+    </pre>
 
       </div>
       <!-- <div class="header">
