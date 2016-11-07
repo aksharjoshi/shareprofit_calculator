@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">How To Manage JSON Requests efdfdfe</h3>
+      </div>
+      <hr/>
+      <div>
+      <form action="request" method="post">
+        <textarea cols="60" rows="8" name="jsondata">[
+  { "id": "1001", "type": "Regular" },
+  { "id": "1002", "type": "Chocolate" },
+  { "id": "1003", "type": "Blueberry" },
+  { "id": "1004", "type": "Devil's Food" }
+]</textarea><br /><br />
+
+      <table>
+        <tr>
+          <td>Ticker symbol:</td> 
+          <td> <input type="text" name="ticker"></td>       
+        </tr>
+
+        <tr>
+          <td>Allotment:</td>
+          <td><input type="text" name="allotment"></td>
+        </tr>
+
+        <tr>
+          <td>
+            Final share price:</td>           
+          </td>
+          <td>
+            <input type="text" name="finalPrice">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Sell Commision:</td>           
+          </td>
+          <td>
+            <input type="text" name="sellCommision">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Initial share price:</td>           
+          </td>
+          <td>
+            <input type="text" name="initialPrice">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Buy Commision:</td>           
+          </td>
+          <td>
+            <input type="text" name="buyCommision">
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Capital Gain Tax Rate (%):</td>           
+          </td>
+          <td>
+            <input type="text" name="taxRate">
+          </td>
+        </tr>
+
+
+      </table>
+
+        <input type="submit" value="Send">
+      </form>
+      </div>
+    </div>
+  </body>
+</html>
