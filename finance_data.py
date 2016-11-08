@@ -35,9 +35,6 @@ def get_info_share(symbol):
 			percChange = float(Decimal(price) - Decimal(open))/float(Decimal(open))
 			print "%f" % percChange +"%" 
 			
-		
-		
-			
 	except Exception as e:
 		print symbol," is not a valid share symbol. \nPlease re-run the program with correct share symbol"
 	except AttributeError as ae: 

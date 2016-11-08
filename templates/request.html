@@ -5,55 +5,28 @@
           rel="stylesheet">
   </head>
   <body>
-    <!-- <div class="container">
-      <div class="header">
-        <h3 class="text-muted">How To Manage JSON Requests</h3>
-      </div>
-      <hr/>
-      <div>
-      This is the JSON data, as a string:<br />
-      <pre>{{jsondata}}</pre>
-      This is the JSON data, as an array of objects:<br />
-      <ul>
-      {% for item in data %}
-        <li>{{item.id}}: {{item.type}}</li>
-        
-      {% endfor %}
-    </ul>
- -->
- <div class="header">
-        <h3 class="text-muted">Share calculator:</h3>
- </div>
-
-    <h3>Details:</h3><br/><pre>
+   <div class="header">
+        <h3 class="text-muted">Your Share calculator for {{ticker}}:</h3>
+   </div>
+ {% if cname %}
+ <h3>Details:</h3><br/><pre>
     <ul>
-      <li>totalCommision: {{totalCommision}}</li>
-      <li>ticker: {{ticker}}</li>
-      <li>cost: {{cost}}</li>
-      <li>proceeds: {{proceeds}}</li>
-      <li>taxRate: {{taxRate}}</li>
-      <li>taxTotal: {{taxTotal}}</li>
-      <li>proceeds: {{proceeds}}</li>
-      <li>cost: {{cost}}</li>
-      <li>netProfit: {{netProfit}}</li>
-      <li>roiPerc: {{roiPerc}}</li>
+      <li>Total commision paid is: {{totalCommision}}</li>
+      <li>Company name for ticker is: {{cname}}</li>
+      <li>Total cost is: {{cost}}</li>
+      <li>Your proceeds are: {{proceeds}}</li>
+      <li>Tax rate you paid is: {{taxRate}}</li>
+      <li>Total tax in dollars is: {{taxTotal}}</li>
+      <li>Total net profit is: {{netProfit}}</li>
+      <li>Your return on investment (ROI): {{roiPerc}}</li>
+      <li>Your break even price is: {{breakEvenDollar}}</li>
     </ul>
     </pre>
-
-      </div>
-      <!-- <div class="header">
-        <h3 class="text-muted">Code to manage a JSON Request</h3>
-      </div>
-      <hr/>  -->   
-<!-- <pre>
-@app.route('/request', methods=['POST'])
-def jsonreq():
-    # Get the JSON data sent from the form
-    jsondata = request.form['jsondata']
-    # Convert the JSON data into a Python structure
-    data = json.loads(jsondata)
-    return render_template('request.html', data=data, jsondata=jsondata)
-</pre> -->
+    
+ {% else %}
+ <h3>The symbol entered is not correct. Please go back and correct the symbol.</h3>
+    
+  {%endif%}
       </div>
     </div>
   </body>
